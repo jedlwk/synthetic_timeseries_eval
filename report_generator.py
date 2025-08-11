@@ -712,23 +712,28 @@ class ReportGenerator:
                     <p><strong>What These Scores Mean for Your Business:</strong></p>
         """
         
-        # Calculate metric averages for business impact
-        overall_avg = 0
-        metric_count = 0
+        # Use best performer metrics for business impact (prioritize conditional if available)
         diversity_avg = fidelity_avg = privacy_avg = utility_avg = 0
         
-        if "conditional" in metric_averages:
-            cond_metrics = metric_averages["conditional"]
-            diversity_avg = cond_metrics.get("diversity", 0)
-            fidelity_avg = cond_metrics.get("fidelity", 0) 
-            privacy_avg = cond_metrics.get("privacy", 0)
-            utility_avg = cond_metrics.get("utility", 0)
-        elif "unconditional" in metric_averages:
-            uncond_metrics = metric_averages["unconditional"]
-            diversity_avg = uncond_metrics.get("diversity", 0)
-            fidelity_avg = uncond_metrics.get("fidelity", 0)
-            privacy_avg = uncond_metrics.get("privacy", 0)
-            utility_avg = uncond_metrics.get("utility", 0)
+        if best_performers:
+            # Use conditional best performer if available, otherwise unconditional
+            if "conditional" in best_performers:
+                best_variant = best_performers["conditional"]["variant"]
+                # Find the best performer's detailed results
+                if "conditional" in results and best_variant in results["conditional"]:
+                    best_results = results["conditional"][best_variant]
+                    diversity_avg = best_results.get("diversity", {}).get("overall_diversity_score", 0)
+                    fidelity_avg = best_results.get("fidelity", {}).get("overall_fidelity_score", 0)
+                    privacy_avg = best_results.get("privacy", {}).get("overall_privacy_score", 0)
+                    utility_avg = best_results.get("utility", {}).get("overall_utility_score", 0)
+            elif "unconditional" in best_performers:
+                best_variant = best_performers["unconditional"]["variant"]
+                if "unconditional" in results and best_variant in results["unconditional"]:
+                    best_results = results["unconditional"][best_variant]
+                    diversity_avg = best_results.get("diversity", {}).get("overall_diversity_score", 0)
+                    fidelity_avg = best_results.get("fidelity", {}).get("overall_fidelity_score", 0)
+                    privacy_avg = best_results.get("privacy", {}).get("overall_privacy_score", 0)
+                    utility_avg = best_results.get("utility", {}).get("overall_utility_score", 0)
         
         # Business impact cards
         html_content += f"""

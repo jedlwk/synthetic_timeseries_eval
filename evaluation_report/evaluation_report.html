@@ -1,0 +1,535 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>🔍 Time Series Synthetic Data Evaluation Report - Business Analysis</title>
+            <style>
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; }
+                .container { max-width: 1200px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+                h1 { color: #2c3e50; text-align: center; border-bottom: 3px solid #3498db; padding-bottom: 10px; margin-bottom: 10px; }
+                h2 { color: #34495e; border-left: 4px solid #3498db; padding-left: 15px; }
+                h3 { color: #7f8c8d; }
+                .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+                .metric-card { background-color: #ecf0f1; padding: 20px; border-radius: 8px; text-align: center; border-left: 4px solid #3498db; }
+                .metric-value { font-size: 2em; font-weight: bold; color: #2c3e50; }
+                .metric-label { color: #7f8c8d; font-size: 0.9em; text-transform: uppercase; }
+                .recommendation { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; margin: 10px 0; border-radius: 5px; }
+                .recommendation.excellent { background-color: #d4edda; border-color: #c3e6cb; }
+                .recommendation.warning { background-color: #f8d7da; border-color: #f5c6cb; }
+                .image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+                .image-container { text-align: center; }
+                .image-container img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+                .timestamp { text-align: right; color: #7f8c8d; font-size: 0.9em; }
+                table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+                th { background-color: #3498db; color: white; }
+                .score-good { color: #27ae60; font-weight: bold; }
+                .score-medium { color: #f39c12; font-weight: bold; }
+                .score-poor { color: #e74c3c; font-weight: bold; }
+                .executive-summary { background-color: #e8f4f8; border-left: 5px solid #3498db; padding: 20px; margin: 20px 0; }
+                .critical-finding { background-color: #f8d7da; border: 2px solid #dc3545; padding: 20px; margin: 20px 0; border-radius: 8px; }
+                .key-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+                .key-metric { background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+                .immediate-action { background-color: #fff3cd; border: 2px solid #ffc107; padding: 20px; margin: 20px 0; border-radius: 8px; }
+                .business-impact { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+                .business-card { background-color: white; padding: 20px; border-radius: 8px; border-left: 5px solid #dc3545; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+                .business-card.yellow { border-left-color: #ffc107; }
+                .business-card.red { border-left-color: #dc3545; }
+                .risk-indicator { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; color: white; }
+                .risk-high { background-color: #dc3545; }
+                .risk-medium { background-color: #ffc107; color: #000; }
+                .risk-baseline { background-color: #28a745; }
+                .issues-section { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 20px; margin: 20px 0; border-radius: 8px; }
+                .severe-issues { background-color: #f8d7da; border-color: #f5c6cb; }
+                .moderate-issues { background-color: #fff3cd; border-color: #ffeeba; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>🔍 Time Series Synthetic Data Evaluation Report - Business Analysis</h1>
+                
+                <div class="timestamp">
+                    Generated: 2025-08-11
+                    <br> Author: Jed Lee 
+                </div>
+                
+                <div class="executive-summary">
+                    <h2>🎯 Executive Summary</h2>
+                    <div class="critical-finding">
+                        <strong>CRITICAL FINDING:</strong> Current synthetic data generation methods are <strong style="color: #dc3545;">NOT READY FOR PRODUCTION USE</strong>.
+                    </div>
+                    
+                    <div class="key-metrics">
+        
+                        <div class="key-metric">
+                            <strong>Best Conditional Method (TSV2):</strong> 
+                            <span class="risk-indicator risk-high">57.0% HIGH RISK</span>
+                        </div>
+                        <div class="key-metric">
+                            <strong>Best Unconditional Method (TSV2):</strong> 
+                            <span class="risk-indicator risk-high">23.4% HIGH RISK</span>
+                        </div>
+                        <div class="key-metric">
+                            <strong>Original data with noise:</strong> 
+                            <span class="risk-indicator risk-baseline">72.9% BASELINE</span>
+                        </div>
+                    </div>
+                    
+                    <div class="immediate-action">
+                        <strong>🚨 IMMEDIATE ACTION REQUIRED:</strong> Do not deploy current synthetic data methods in production. 
+                        All variants significantly underperform even basic noise addition techniques.
+                    </div>
+                </div>
+                
+                <div class="business-impact">
+                    <h2>💼 Business Impact Translation</h2>
+                    <p><strong>What These Scores Mean for Your Business:</strong></p>
+        
+                    <div class="business-card red">
+                        <strong>🔴 Diversity (55%)</strong><br>
+                        <strong>Risk:</strong> Synthetic data doesn't cover full business scenarios<br>
+                        <strong>Impact:</strong> Models trained on this data will fail on edge cases and new market conditions
+                    </div>
+                    
+                    <div class="business-card yellow">
+                        <strong>🟡 Fidelity (47%)</strong><br>
+                        <strong>Risk:</strong> Statistical patterns don't match real data<br>
+                        <strong>Impact:</strong> Business analytics and forecasts will be inaccurate
+                    </div>
+                    
+                    <div class="business-card red">
+                        <strong>🔴 Privacy (35%)</strong><br>
+                        <strong>Risk:</strong> Data may be reverse-engineered to original<br>
+                        <strong>Impact:</strong> Potential GDPR/compliance violations, customer trust issues
+                    </div>
+                    
+                    <div class="business-card yellow">
+                        <strong>🟡 Utility (48%)</strong><br>
+                        <strong>Risk:</strong> Data isn't useful for machine learning<br>
+                        <strong>Impact:</strong> ML models will perform poorly, wasted development costs
+                    </div>
+                </div>
+                
+                <h2>📖 Understanding This Report</h2>
+                <p>This evaluation compares synthetic time series data against original data across four key dimensions. 
+                <strong>Conditional generation</strong> creates time series based on static features (like categories), while 
+                <strong>unconditional generation</strong> creates time series without any conditioning information.</p>
+                
+                <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4>📊 Evaluation Metrics Explained:</h4>
+                    <ul>
+                        <li><strong>Diversity (25% weight):</strong> Measures how well synthetic data covers the full variety of patterns found in original data. This includes statistical diversity (variance, range, entropy), coverage ratio (what percentage of original data patterns appear in synthetic data), uniqueness score (anti-duplication), and temporal pattern diversity (different time-based trends and autocorrelations). Higher diversity means synthetic data represents the full spectrum of original data characteristics.</li>
+                        
+                        <li><strong>Fidelity (35% weight):</strong> Assesses how closely synthetic data matches the statistical properties and distributions of original data using core TSGBench metrics. This includes marginal distribution difference (MDD), autocorrelation difference (ACD), statistical moments matching (skewness/kurtosis), dynamic time warping (DTW), and Euclidean distance (ED). Higher fidelity means synthetic data is statistically indistinguishable from original data.</li>
+                        
+                        <li><strong>Privacy (15% weight):</strong> Evaluates basic privacy risks and memorization detection in synthetic data. This includes distance to closest records (memorization detection) and membership inference vulnerability (basic distinguishability assessment). Privacy is not a core TSGBench focus, so simplified distance-based approaches are used. Higher privacy scores mean better protection against privacy attacks.</li>
+                        
+                        <li><strong>Utility (25% weight):</strong> Tests practical usefulness and functional equivalence for real-world applications. This includes discriminative scoring (how hard is it to distinguish synthetic from real), predictive performance (forecasting accuracy), downstream task performance (classification/regression), and statistical consistency (business metrics preservation). Higher utility means synthetic data works effectively for practical business purposes.</li>
+                    </ul>
+                    <p><strong>Baseline:</strong> original_noise is simply the original data with added noise - synthetic methods should ideally outperform this simple baseline to demonstrate meaningful generation capabilities.</p>
+                </div>
+                
+                <h2>🏆 Best Synthetic Performers</h2>
+        <ul><li><strong>CONDITIONAL:</strong> tsv2 (Score: 0.5698)</li><li><strong>UNCONDITIONAL:</strong> tsv2 (Score: 0.2343)</li></ul>
+                <h2>📏 Baseline Performance</h2>
+        <ul><li><strong>ORIGINAL_NOISE:</strong> 0.7288 (Original data with noise)</li></ul>
+                <div class="issues-section severe-issues">
+                    <h2>⚠️ Critical Technical Issues Identified</h2>
+                    
+                    <h3>🔥 Severe Issues (Require Immediate Attention)</h3>
+                    <ul>
+                        <li><strong>Baseline Underperformance:</strong> All synthetic methods score 19-37% lower than simple noise addition</li>
+                        <li><strong>Unconditional Diversity Collapse:</strong> Only 20.6% diversity indicates severe mode collapse</li>
+                        <li><strong>Privacy Vulnerabilities:</strong> High membership inference accuracy (95-100%) suggests data memorization</li>
+                        <li><strong>Statistical Divergence:</strong> Poor fidelity scores indicate synthetic data distributions don't match original</li>
+                    </ul>
+                    
+                    <h3>🟡 Moderate Issues (Need Investigation)</h3>
+                    <ul>
+                        <li><strong>Column-Level Inconsistency:</strong> Performance varies significantly across data features</li>
+                        <li><strong>Temporal Pattern Loss:</strong> Autocorrelation differences suggest poor time series modeling</li>
+                    </ul>
+                    
+                    <h3>📊 Data Quality Concerns</h3>
+                    <ul>
+                        <li><strong>Coverage Ratio = 0.0:</strong> Synthetic data covers none of the original data space effectively</li>
+                        <li><strong>High Discriminative Accuracy:</strong> ML models can easily distinguish real from synthetic (poor utility)</li>
+                        <li><strong>Moment Mismatch:</strong> Skewness and kurtosis differ significantly from original data</li>
+                    </ul>
+                </div>
+        
+                <h2>📊 Performance Summary</h2>
+        
+                <h3>🔗 Conditional Generation - ORIGINAL_NOISE (Baseline)</h3>
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-value score-good">0.729</div>
+                        <div class="metric-label">Overall Score</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-good">0.705</div>
+                        <div class="metric-label">Diversity</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-good">0.876</div>
+                        <div class="metric-label">Fidelity</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-poor">0.418</div>
+                        <div class="metric-label">Privacy</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-good">0.733</div>
+                        <div class="metric-label">Utility</div>
+                    </div>
+                </div>
+                
+                <h3>🔗 Conditional Generation - TSV1</h3>
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-value score-poor">0.381</div>
+                        <div class="metric-label">Overall Score</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-poor">0.423</div>
+                        <div class="metric-label">Diversity</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-poor">0.278</div>
+                        <div class="metric-label">Fidelity</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-poor">0.400</div>
+                        <div class="metric-label">Privacy</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-poor">0.470</div>
+                        <div class="metric-label">Utility</div>
+                    </div>
+                </div>
+                
+                <h3>🔗 Conditional Generation - TSV2</h3>
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-value score-medium">0.570</div>
+                        <div class="metric-label">Overall Score</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-medium">0.671</div>
+                        <div class="metric-label">Diversity</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-medium">0.669</div>
+                        <div class="metric-label">Fidelity</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-poor">0.292</div>
+                        <div class="metric-label">Privacy</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value score-poor">0.496</div>
+                        <div class="metric-label">Utility</div>
+                    </div>
+                </div>
+                
+                    <h3>🔄 Unconditional Generation - TSV2</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value score-poor">0.234</div>
+                            <div class="metric-label">Overall Score</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value score-poor">0.228</div>
+                            <div class="metric-label">Diversity</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value score-poor">0.121</div>
+                            <div class="metric-label">Fidelity</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value score-poor">0.454</div>
+                            <div class="metric-label">Privacy</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value score-poor">0.267</div>
+                            <div class="metric-label">Utility</div>
+                        </div>
+                    </div>
+                    
+                <div style="border: 2px solid #28a745; background-color: #f8fff8; padding: 20px; margin: 30px 0; border-radius: 8px;">
+                    <h2>🎯 Actionable Recommendations</h2>
+                    
+                    <div class="issues-section severe-issues">
+                        <h3>🚨 Immediate Actions</h3>
+                        <ul>
+                            <li><strong>STOP production deployment plans</strong> - Current synthetic data is not suitable for business use</li>
+                            <li><strong>Evaluate alternative vendors</strong> - Research commercial synthetic data providers</li>
+                            <li><strong>Establish quality gates</strong> - Define minimum acceptable scores (≥80% vs baseline)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="issues-section moderate-issues">
+                        <h3>🔧 Technical Improvements</h3>
+                        <ul>
+                            <li><strong>Algorithm review</strong> - Investigate why methods underperform simple noise addition</li>
+                            <li><strong>Address diversity collapse</strong> - Fix unconditional generation variety issues</li>
+                            <li><strong>Improve privacy</strong> - Implement differential privacy and reduce memorization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="issues-section">
+                        <h3>📋 Next Steps</h3>
+                        <ul>
+                            <li><strong>Validation framework</strong> - Implement automated quality testing</li>
+                            <li><strong>Business requirements</strong> - Define specific use-case needs</li>
+                            <li><strong>Performance monitoring</strong> - Set up continuous data quality monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+        
+                <h2>💡 Detailed Recommendations & Insights</h2>
+        <h3>🔗 Conditional Generation Recommendations:</h3><ul><li class="recommendation warning">LOW FIDELITY: Statistical properties don't match original conditional data</li><li class="recommendation warning">PRIVACY RISK: High vulnerability to membership inference attacks</li><li class="recommendation ">LIMITED UTILITY: Poor performance for conditional prediction tasks</li><li class="recommendation warning">POOR: Conditional generation requires major improvements</li></ul><h3>🔄 Unconditional Generation Recommendations:</h3><ul><li class="recommendation warning">LOW DIVERSITY: Unconditional synthetic data lacks variety</li><li class="recommendation warning">LOW FIDELITY: Statistical properties don't match original data</li><li class="recommendation ">LIMITED UTILITY: Poor performance for general tasks</li><li class="recommendation warning">POOR: Unconditional generation requires major improvements</li></ul><h3>📏 Baseline Comparison Insights:</h3><ul><li class="recommendation warning">UNDERPERFORMING: Conditional synthetic methods score lower than baseline (max: 0.729)</li><li class="recommendation warning">UNDERPERFORMING: Unconditional synthetic methods score lower than baseline (max: 0.729)</li></ul>
+                <h2>📈 Performance Visualizations</h2>
+                
+                <div class="image-container" style="margin-bottom: 30px;">
+                    <h3>Metric Breakdown</h3>
+                    <img src="metric_breakdown.png" alt="Metric Breakdown Chart" style="width: 100%; max-width: 1000px;">
+                </div>
+                
+                <div class="image-container" style="margin-bottom: 30px;">
+                    <h3>Performance Radar</h3>
+                    <img src="radar_chart.png" alt="Radar Chart" style="width: 100%; max-width: 800px;">
+                </div>
+                
+                <div class="image-container" style="margin-bottom: 30px;">
+                    <h3>Comprehensive Heatmap</h3>
+                    <img src="performance_heatmap.png" alt="Performance Heatmap" style="width: 100%; max-width: 1000px;">
+                </div>
+                
+                <h2>📊 Time Series Data Comparison & Analysis</h2>
+                <p>Visual comparison and detailed performance analysis showing how synthetic methods compare to original data patterns.</p>
+                
+                
+                <div class="image-container" style="margin-bottom: 30px;">
+                    <h3>🔗 Conditional Generation - Overall Comparison</h3>
+                    <p>Shows all 4 conditional variants (Original, TSV1, TSV2, Original+Noise) overlaid for direct comparison.</p>
+                    <img src="conditional_comparison.png" alt="Conditional Generation Time Series Comparison" style="width: 100%; max-width: 1200px;">
+                </div>
+        
+                <h3>📊 Conditional Generation - Detailed Column Analysis</h3>
+                <p>Performance breakdown for each column (col1, col2, col3) comparing Original+Noise baseline with synthetic methods.</p>
+        
+        <h4>📊 col1 - Method Comparison</h4>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Diversity</th>
+                <th>Fidelity</th>
+                <th>Privacy</th>
+                <th>Utility</th>
+            </tr>
+        
+            <tr>
+                <td><strong>Original+Noise (Baseline)</strong></td>
+                <td class="score-good">0.999</td>
+                <td class="score-good">1.000</td>
+                <td class="score-poor">0.410</td>
+                <td class="score-good">1.000</td>
+            </tr>
+            
+            <tr>
+                <td><strong>TSV1</strong></td>
+                <td class="score-medium">0.572</td>
+                <td class="score-poor">0.373</td>
+                <td class="score-poor">0.284</td>
+                <td class="score-good">0.812</td>
+            </tr>
+            
+            <tr>
+                <td><strong>TSV2</strong></td>
+                <td class="score-good">0.906</td>
+                <td class="score-medium">0.689</td>
+                <td class="score-poor">0.261</td>
+                <td class="score-good">0.963</td>
+            </tr>
+            </table><br><br>
+        <h4>📊 col2 - Method Comparison</h4>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Diversity</th>
+                <th>Fidelity</th>
+                <th>Privacy</th>
+                <th>Utility</th>
+            </tr>
+        
+            <tr>
+                <td><strong>Original+Noise (Baseline)</strong></td>
+                <td class="score-good">1.000</td>
+                <td class="score-good">0.978</td>
+                <td class="score-good">0.801</td>
+                <td class="score-good">0.989</td>
+            </tr>
+            
+            <tr>
+                <td><strong>TSV1</strong></td>
+                <td class="score-medium">0.597</td>
+                <td class="score-poor">0.490</td>
+                <td class="score-poor">0.349</td>
+                <td class="score-good">0.788</td>
+            </tr>
+            
+            <tr>
+                <td><strong>TSV2</strong></td>
+                <td class="score-good">0.994</td>
+                <td class="score-good">0.828</td>
+                <td class="score-poor">0.234</td>
+                <td class="score-good">0.961</td>
+            </tr>
+            </table><br><br>
+        <h4>📊 col3 - Method Comparison</h4>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Diversity</th>
+                <th>Fidelity</th>
+                <th>Privacy</th>
+                <th>Utility</th>
+            </tr>
+        
+            <tr>
+                <td><strong>Original+Noise (Baseline)</strong></td>
+                <td class="score-good">0.961</td>
+                <td class="score-good">0.789</td>
+                <td class="score-poor">0.285</td>
+                <td class="score-good">0.989</td>
+            </tr>
+            
+            <tr>
+                <td><strong>TSV1</strong></td>
+                <td class="score-medium">0.609</td>
+                <td class="score-poor">0.457</td>
+                <td class="score-poor">0.360</td>
+                <td class="score-good">0.766</td>
+            </tr>
+            
+            <tr>
+                <td><strong>TSV2</strong></td>
+                <td class="score-good">0.918</td>
+                <td class="score-good">0.798</td>
+                <td class="score-poor">0.225</td>
+                <td class="score-good">0.957</td>
+            </tr>
+            </table><br><br>
+                <div class="image-container" style="margin-bottom: 30px;">
+                    <h3>🔄 Unconditional Generation - Overall Comparison</h3>
+                    <p>Shows all available unconditional variants overlaid for direct comparison.</p>
+                    
+                    <div style="background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; margin: 15px 0; border-radius: 5px;">
+                        <strong>⚠️ Data Length Adjustment:</strong> This evaluation uses only overlapping timesteps for fair comparison. 
+                        Metrics are calculated only on the common time period where all variants have actual data, without any padding or truncation.
+                        Visualizations may show the full length of each series, but scoring reflects only the overlapping portion.
+                    </div>
+                    
+                    <img src="unconditional_comparison.png" alt="Unconditional Generation Time Series Comparison" style="width: 100%; max-width: 1200px;">
+                </div>
+        
+                <h3>📊 Unconditional Generation - Detailed Column Analysis</h3>
+                <p>Performance breakdown for each financial column (Open, High, Low, Close, Volume).</p>
+        
+        <h4>📊 Open - Method Comparison</h4>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Diversity</th>
+                <th>Fidelity</th>
+                <th>Privacy</th>
+                <th>Utility</th>
+            </tr>
+        
+            <tr>
+                <td><strong>TSV2</strong></td>
+                <td class="score-poor">0.306</td>
+                <td class="score-medium">0.659</td>
+                <td class="score-poor">0.473</td>
+                <td class="score-good">0.849</td>
+            </tr>
+            </table><br><br>
+        <h4>📊 High - Method Comparison</h4>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Diversity</th>
+                <th>Fidelity</th>
+                <th>Privacy</th>
+                <th>Utility</th>
+            </tr>
+        
+            <tr>
+                <td><strong>TSV2</strong></td>
+                <td class="score-poor">0.314</td>
+                <td class="score-medium">0.651</td>
+                <td class="score-poor">0.474</td>
+                <td class="score-good">0.844</td>
+            </tr>
+            </table><br><br>
+        <h4>📊 Low - Method Comparison</h4>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Diversity</th>
+                <th>Fidelity</th>
+                <th>Privacy</th>
+                <th>Utility</th>
+            </tr>
+        
+            <tr>
+                <td><strong>TSV2</strong></td>
+                <td class="score-poor">0.297</td>
+                <td class="score-medium">0.666</td>
+                <td class="score-medium">0.509</td>
+                <td class="score-good">0.842</td>
+            </tr>
+            </table><br><br>
+        <h4>📊 Close - Method Comparison</h4>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Diversity</th>
+                <th>Fidelity</th>
+                <th>Privacy</th>
+                <th>Utility</th>
+            </tr>
+        
+            <tr>
+                <td><strong>TSV2</strong></td>
+                <td class="score-poor">0.297</td>
+                <td class="score-medium">0.668</td>
+                <td class="score-medium">0.513</td>
+                <td class="score-good">0.854</td>
+            </tr>
+            </table><br><br>
+        <h4>📊 Volume - Method Comparison</h4>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Diversity</th>
+                <th>Fidelity</th>
+                <th>Privacy</th>
+                <th>Utility</th>
+            </tr>
+        
+            <tr>
+                <td><strong>TSV2</strong></td>
+                <td class="score-poor">0.358</td>
+                <td class="score-good">0.852</td>
+                <td class="score-poor">0.406</td>
+                <td class="score-good">0.832</td>
+            </tr>
+            </table><br><br>
+            </div>
+        </body>
+        </html>
+        

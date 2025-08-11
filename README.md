@@ -96,9 +96,9 @@ synthetic_ts_eval/
 
 ### Best Performing Synthetic Variants:
 - **Conditional Generation**: TSV2 (57.0%) - **HIGH RISK** (22% below baseline)
-- **Unconditional Generation**: TSV2 (23.4%) - **CRITICAL FAILURE** (68% below baseline)
+- **Unconditional Generation**: TSV2 (23.4%) - **CRITICAL FAILURE** 
 
-### TSGBench Baseline Performance:
+### Baseline Performance:
 - **Original+Noise**: 72.9% (Simple Gaussian noise significantly outperforms all synthetic methods)
 
 ### Performance by Generation Type:

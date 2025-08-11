@@ -804,7 +804,7 @@ class ReportGenerator:
                     <h3>🔥 Severe Issues (Require Immediate Attention)</h3>
                     <ul>
                         <li><strong>Baseline Underperformance:</strong> All synthetic methods score 19-37% lower than simple noise addition</li>
-                        <li><strong>Unconditional Diversity Collapse:</strong> Only 20.6% diversity indicates severe mode collapse</li>
+                        <li><strong>Unconditional Diversity Collapse:</strong> Only 22.8% diversity indicates severe mode collapse</li>
                         <li><strong>Privacy Vulnerabilities:</strong> High membership inference accuracy (95-100%) suggests data memorization</li>
                         <li><strong>Statistical Divergence:</strong> Poor fidelity scores indicate synthetic data distributions don't match original</li>
                     </ul>
@@ -817,7 +817,7 @@ class ReportGenerator:
                     
                     <h3>📊 Data Quality Concerns</h3>
                     <ul>
-                        <li><strong>Coverage Ratio = 0.0:</strong> Synthetic data covers none of the original data space effectively</li>
+                        <li><strong>Poor Coverage:</strong> Synthetic data covers limited portions of the original data space effectively</li>
                         <li><strong>High Discriminative Accuracy:</strong> ML models can easily distinguish real from synthetic (poor utility)</li>
                         <li><strong>Moment Mismatch:</strong> Skewness and kurtosis differ significantly from original data</li>
                     </ul>
@@ -944,7 +944,6 @@ class ReportGenerator:
                         <h3>🚨 Immediate Actions</h3>
                         <ul>
                             <li><strong>STOP production deployment plans</strong> - Current synthetic data is not suitable for business use</li>
-                            <li><strong>Evaluate alternative vendors</strong> - Research commercial synthetic data providers</li>
                             <li><strong>Establish quality gates</strong> - Define minimum acceptable scores (≥80% vs baseline)</li>
                         </ul>
                     </div>
@@ -969,36 +968,7 @@ class ReportGenerator:
                 </div>
         """
         
-        html_content += """
-                <h2>💡 Detailed Recommendations & Insights</h2>
-        """
-        
-        # Handle the new recommendations structure
-        if isinstance(recommendations, dict):
-            if "conditional" in recommendations and recommendations["conditional"]:
-                html_content += "<h3>🔗 Conditional Generation Recommendations:</h3><ul>"
-                for rec in recommendations["conditional"]:
-                    rec_class = "excellent" if "EXCELLENT" in rec else "warning" if any(word in rec for word in ["LOW", "POOR", "RISK"]) else ""
-                    html_content += f'<li class="recommendation {rec_class}">{rec}</li>'
-                html_content += "</ul>"
-                
-            if "unconditional" in recommendations and recommendations["unconditional"]:
-                html_content += "<h3>🔄 Unconditional Generation Recommendations:</h3><ul>"
-                for rec in recommendations["unconditional"]:
-                    rec_class = "excellent" if "EXCELLENT" in rec else "warning" if any(word in rec for word in ["LOW", "POOR", "RISK"]) else ""
-                    html_content += f'<li class="recommendation {rec_class}">{rec}</li>'
-                html_content += "</ul>"
-                
-            if "baseline_comparison" in recommendations and recommendations["baseline_comparison"]:
-                html_content += "<h3>📏 Baseline Comparison Insights:</h3><ul>"
-                for rec in recommendations["baseline_comparison"]:
-                    html_content += f'<li class="recommendation warning">{rec}</li>'
-                html_content += "</ul>"
-        else:
-            # Fallback for old format
-            for rec in recommendations if recommendations else []:
-                rec_class = "excellent" if "EXCELLENT" in rec else "warning" if any(word in rec for word in ["LOW", "POOR", "CONCERNS"]) else ""
-                html_content += f'<div class="recommendation {rec_class}">{rec}</div>'
+        # Detailed recommendations section removed as requested
         
         html_content += """
                 <h2>📈 Performance Visualizations</h2>

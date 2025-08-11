@@ -91,12 +91,12 @@ synthetic_ts_eval/
 ## 📈 Current TSGBench Evaluation Results
 
 ### 🚨 CRITICAL FINDING: NOT READY FOR PRODUCTION
-**Overall Synthetic Performance: 47.5% (Conditional) | 23.4% (Unconditional)**  
+**Overall Synthetic Performance: 57.0% (Conditional) | 23.4% (Unconditional)**  
 **Data Quality Rating: HIGH RISK - Major Improvements Required**
 
 ### Best Performing Synthetic Variants:
-- **Conditional Generation**: TSV2 (57.0%) - **HIGH RISK** (37% below baseline)
-- **Unconditional Generation**: TSV2 (23.4%) - **CRITICAL FAILURE** (50% below baseline)
+- **Conditional Generation**: TSV2 (57.0%) - **HIGH RISK** (22% below baseline)
+- **Unconditional Generation**: TSV2 (23.4%) - **CRITICAL FAILURE** (68% below baseline)
 
 ### TSGBench Baseline Performance:
 - **Original+Noise**: 72.9% (Simple Gaussian noise significantly outperforms all synthetic methods)
@@ -104,11 +104,11 @@ synthetic_ts_eval/
 ### Performance by Generation Type:
 
 #### 🔗 Conditional Generation (Generic Time Series):
-- **Overall Score**: 47.5% - **HIGH RISK** for production deployment
-- **Diversity**: 54.7% (moderate - pattern coverage gaps)
-- **Fidelity**: 47.4% (poor - TSGBench metrics show statistical mismatch)
-- **Privacy**: 34.6% (high risk - 92-100% membership inference accuracy)
-- **Utility**: 48.3% (poor - limited downstream task performance)
+- **Overall Score**: 57.0% - **HIGH RISK** for production deployment
+- **Diversity**: 67.1% (moderate - pattern coverage gaps)
+- **Fidelity**: 66.9% (moderate - TSGBench metrics show statistical mismatch)
+- **Privacy**: 29.2% (high risk - 92-100% membership inference accuracy)
+- **Utility**: 49.6% (poor - limited downstream task performance)
 
 #### 🔄 Unconditional Generation (Financial OHLC-V Data):
 - **Overall Score**: 23.4% - **CRITICAL FAILURE** for any business application
@@ -120,7 +120,7 @@ synthetic_ts_eval/
 ### 🚨 TSGBench-Identified Critical Issues:
 ```
 🔥 CRITICAL FAILURES:
-• Baseline Underperformance: All synthetic methods score 37-50% lower than simple noise
+• Baseline Underperformance: All synthetic methods score 22-68% lower than simple noise
 • Mode Collapse: Unconditional diversity (22.8%) indicates severe pattern limitation  
 • Data Memorization: 92-100% membership inference accuracy (privacy failure)
 • Statistical Mismatch: Core TSGBench metrics show poor distributional alignment
